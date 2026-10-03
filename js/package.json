@@ -1,0 +1,14 @@
+{
+  "name": "data-contracts-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Stops an upstream change silently breaking every downstream dashboard: producers publish a contract and CI blocks breaking changes.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "lint": "node --check src/index.js && node --check src/diff.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

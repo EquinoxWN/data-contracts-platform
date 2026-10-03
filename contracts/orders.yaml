@@ -1,0 +1,62 @@
+# Published contract for the orders data produced by the checkout team.
+# Changing this file in a pull request runs `datacontract check-pr`; breaking changes fail CI.
+apiVersion: v3.0.2
+kind: DataContract
+id: orders
+name: Orders
+version: 1.0.0
+description: One row per customer order, written by the checkout service after payment.
+team:
+  - username: checkout-team
+    role: owner
+  - username: analytics-team
+    role: consumer
+schema:
+  - name: orders
+    properties:
+      - name: order_id
+        logicalType: string
+        required: true
+        primaryKey: true
+        description: Unique order id (UUID).
+      - name: customer_id
+        logicalType: string
+        required: true
+        description: Customer who placed the order.
+      - name: status
+        logicalType: string
+        required: true
+        allowedValues: [placed, paid, shipped, cancelled]
+        description: Lifecycle state of the order.
+      - name: amount_cents
+        logicalType: integer
+        required: true
+        description: Order total in cents, tax included.
+      - name: placed_at
+        logicalType: timestamp
+        required: true
+        description: When the order was placed (UTC).
+      - name: coupon_code
+        logicalType: string
+        required: false
+        description: Discount code, if one was used.
+  - name: order_items
+    properties:
+      - name: order_id
+        logicalType: string
+        required: true
+        primaryKey: true
+      - name: line_no
+        logicalType: integer
+        required: true
+        primaryKey: true
+      - name: sku
+        logicalType: string
+        required: true
+      - name: quantity
+        logicalType: integer
+        required: true
+slaProperties:
+  - property: freshness
+    value: 1
+    unit: h

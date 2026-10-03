@@ -1,0 +1,5328 @@
+{
+ "cases": [
+  {
+   "name": "no change",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": []
+  },
+  {
+   "name": "field removed",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "field-removed",
+     "orders.coupon_code",
+     true
+    ]
+   ]
+  },
+  {
+   "name": "optional field added",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       },
+       {
+        "name": "channel",
+        "logicalType": "string"
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "field-added",
+     "orders.channel",
+     false
+    ]
+   ]
+  },
+  {
+   "name": "required field added",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       },
+       {
+        "name": "currency",
+        "logicalType": "string",
+        "required": true
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "field-added",
+     "orders.currency",
+     false
+    ]
+   ]
+  },
+  {
+   "name": "integer widened to number",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "number",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "type-widened",
+     "orders.amount_cents",
+     false
+    ]
+   ]
+  },
+  {
+   "name": "type changed integer to string",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "string",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "type-changed",
+     "orders.amount_cents",
+     true
+    ]
+   ]
+  },
+  {
+   "name": "timestamp changed to date",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "date",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "type-changed",
+     "orders.placed_at",
+     true
+    ]
+   ]
+  },
+  {
+   "name": "required field became optional",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": false,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "became-optional",
+     "orders.customer_id",
+     true
+    ]
+   ]
+  },
+  {
+   "name": "optional field became required",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": true,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "became-required",
+     "orders.coupon_code",
+     false
+    ]
+   ]
+  },
+  {
+   "name": "allowed value added",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled",
+         "refunded"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "allowed-values-extended",
+     "orders.status",
+     true
+    ]
+   ]
+  },
+  {
+   "name": "allowed value removed",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "allowed-values-narrowed",
+     "orders.status",
+     false
+    ]
+   ]
+  },
+  {
+   "name": "allowed values constraint dropped",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "allowed-values-removed",
+     "orders.status",
+     true
+    ]
+   ]
+  },
+  {
+   "name": "allowed values constraint introduced",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "A-1",
+         "B-2"
+        ]
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "allowed-values-added",
+     "order_items.sku",
+     false
+    ]
+   ]
+  },
+  {
+   "name": "primary key changed",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": false
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "primary-key-changed",
+     "order_items",
+     true
+    ]
+   ]
+  },
+  {
+   "name": "freshness loosened",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 6,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "freshness-loosened",
+     "orders",
+     true
+    ]
+   ]
+  },
+  {
+   "name": "freshness tightened",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 15,
+      "unit": "min"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "freshness-tightened",
+     "orders",
+     false
+    ]
+   ]
+  },
+  {
+   "name": "freshness same in other unit",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 60,
+      "unit": "min"
+     }
+    ]
+   },
+   "expect": []
+  },
+  {
+   "name": "freshness removed",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": []
+   },
+   "expect": [
+    [
+     "freshness-removed",
+     "orders",
+     true
+    ]
+   ]
+  },
+  {
+   "name": "dataset removed",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "dataset-removed",
+     "order_items",
+     true
+    ]
+   ]
+  },
+  {
+   "name": "dataset added",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     },
+     {
+      "name": "refunds",
+      "properties": [
+       {
+        "name": "refund_id",
+        "logicalType": "string",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "dataset-added",
+     "refunds",
+     false
+    ]
+   ]
+  },
+  {
+   "name": "owner changed",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "payments-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "owner-changed",
+     "orders",
+     false
+    ]
+   ]
+  },
+  {
+   "name": "descriptions edited",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "Edited.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Edited."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "description-changed",
+     "orders",
+     false
+    ],
+    [
+     "description-changed",
+     "orders.status",
+     false
+    ]
+   ]
+  },
+  {
+   "name": "several changes at once",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled",
+         "refunded"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "channel",
+        "logicalType": "string"
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "allowed-values-extended",
+     "orders.status",
+     true
+    ],
+    [
+     "field-removed",
+     "orders.coupon_code",
+     true
+    ],
+    [
+     "field-added",
+     "orders.channel",
+     false
+    ]
+   ]
+  },
+  {
+   "name": "number narrowed to integer",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "number",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "type-changed",
+     "orders.amount_cents",
+     true
+    ]
+   ]
+  },
+  {
+   "name": "contract with no SLA gains one",
+   "old": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": []
+   },
+   "new": {
+    "apiVersion": "v3.0.2",
+    "kind": "DataContract",
+    "id": "orders",
+    "name": "Orders",
+    "version": "1.0.0",
+    "description": "One row per customer order, written by the checkout service after payment.",
+    "team": [
+     {
+      "username": "checkout-team",
+      "role": "owner"
+     },
+     {
+      "username": "analytics-team",
+      "role": "consumer"
+     }
+    ],
+    "schema": [
+     {
+      "name": "orders",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true,
+        "description": "Unique order id (UUID)."
+       },
+       {
+        "name": "customer_id",
+        "logicalType": "string",
+        "required": true,
+        "description": "Customer who placed the order."
+       },
+       {
+        "name": "status",
+        "logicalType": "string",
+        "required": true,
+        "allowedValues": [
+         "placed",
+         "paid",
+         "shipped",
+         "cancelled"
+        ],
+        "description": "Lifecycle state of the order."
+       },
+       {
+        "name": "amount_cents",
+        "logicalType": "integer",
+        "required": true,
+        "description": "Order total in cents, tax included."
+       },
+       {
+        "name": "placed_at",
+        "logicalType": "timestamp",
+        "required": true,
+        "description": "When the order was placed (UTC)."
+       },
+       {
+        "name": "coupon_code",
+        "logicalType": "string",
+        "required": false,
+        "description": "Discount code, if one was used."
+       }
+      ]
+     },
+     {
+      "name": "order_items",
+      "properties": [
+       {
+        "name": "order_id",
+        "logicalType": "string",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "line_no",
+        "logicalType": "integer",
+        "required": true,
+        "primaryKey": true
+       },
+       {
+        "name": "sku",
+        "logicalType": "string",
+        "required": true
+       },
+       {
+        "name": "quantity",
+        "logicalType": "integer",
+        "required": true
+       }
+      ]
+     }
+    ],
+    "slaProperties": [
+     {
+      "property": "freshness",
+      "value": 1,
+      "unit": "h"
+     }
+    ]
+   },
+   "expect": [
+    [
+     "freshness-added",
+     "orders",
+     false
+    ]
+   ]
+  }
+ ]
+}

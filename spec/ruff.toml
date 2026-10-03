@@ -1,0 +1,2 @@
+# The case builder shares the Python package's lint rules.
+extend = "../python/pyproject.toml"
