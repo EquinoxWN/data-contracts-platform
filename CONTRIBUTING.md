@@ -4,7 +4,7 @@ Thanks for helping. This is a Python and JavaScript project; issues and pull req
 
 ## Set up and check your change
 
-Needs Python 3.11+, Node.js 22+, git. Caches and virtual environments stay in git-ignored folders inside the repo.
+Needs Python 3.11+, Node.js 24+, git. Caches and virtual environments stay in git-ignored folders inside the repo.
 
 ```bash
 make setup   # install dependencies

@@ -67,7 +67,7 @@ One implementation per language, each in its own folder: `python/` (CLI and rule
 
 ## Run it
 
-Needs Python 3.11+, Node.js 22+ and git.
+Needs Python 3.11+, Node.js 24+ and git.
 
 ```bash
 make setup   # install the Python package (adds the datacontract command)
