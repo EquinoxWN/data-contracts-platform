@@ -49,11 +49,11 @@ _Steps 1 and 2 are built and tested (M1); the rest is on the [roadmap](#roadmap)
 
 ## Tech stack
 
-| Area | Tools |
-|---|---|
-| Core | Open Data Contract Standard (YAML), Python CLI |
-| Checks | schema-registry compatibility, Soda Core quality checks |
-| CI/UI | GitHub Actions with PR comments, small contract catalog web page |
+| Area | In M1 | Planned |
+|---|---|---|
+| Core | Open Data Contract Standard (YAML), Python CLI, the same classifier in JavaScript | - |
+| CI | GitHub Actions `datacontract check-pr` that fails on breaking changes | PR comments naming affected consumers |
+| Checks / UI | - | Soda Core quality checks, quarantine, contract catalog page |
 
 One implementation per language, each in its own folder: `python/` (CLI and rules), `js/` (the same classifier for the catalog page).
 
@@ -170,7 +170,7 @@ What this repo must show before it counts as done:
 ## Why it matters
 
 - **Interview angle:** 'How do you stop upstream changes breaking pipelines?'
-- **Upstream I'm contributing to:** Open Data Contract Standard (Bitol) or Soda Core.
+- **Upstream I'd like to contribute to:** Open Data Contract Standard (Bitol) or Soda Core.
 
 ## Design docs
 
