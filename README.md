@@ -7,6 +7,16 @@
 
 Part of my **Data Engineering** list · Python · JS · core project
 
+## Proof it works
+
+The CLI validates the published contract, then compares two edited copies with it: adding an optional column is safe (exit 0), changing `amount_cents` from integer to string is breaking (exit 1), which is what fails a pull request in CI:
+
+![datacontract validate and diff](docs/proof/demo.jpg)
+
+58 Python and 26 JavaScript tests pass over the same shared cases, and the dependencies have no known vulnerabilities:
+
+![Cases check, ruff, pytest, node --test and pip-audit](docs/proof/tests.jpg)
+
 ## Architecture
 
 **What M1 runs today:**
