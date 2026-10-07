@@ -47,6 +47,12 @@ _Steps 1 and 2 are built and tested (M1); the rest is on the [roadmap](#roadmap)
 5. SLA misses and violation rates become metrics that alert the owning team, not the consumer.
 6. A catalog page lists every contract with its owners, consumers and change history.
 
+## Who it helps
+
+- **Who:** Teams that produce datasets other teams depend on, and the analysts who consume them.
+- **The problem:** A renamed column or a changed type upstream silently breaks dashboards and models downstream.
+- **How to use it:** Describe a dataset in a YAML contract and run `datacontract diff` in a pull request check: it exits 0 for safe changes, 1 for breaking ones and 2 for an invalid contract.
+
 ## Tech stack
 
 | Area | In M1 | Planned |
