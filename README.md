@@ -13,7 +13,7 @@ The CLI validates the published contract, then compares two edited copies with i
 
 ![datacontract validate and diff](docs/proof/demo.jpg)
 
-58 Python and 26 JavaScript tests pass over the same shared cases, and the dependencies have no known vulnerabilities:
+62 Python and 27 JavaScript tests pass over the same shared cases, and the dependencies have no known vulnerabilities (the screenshot is from the M1 run, before the 2026-11-01 quality pass added 4 Python tests and 1 shared case):
 
 ![Cases check, ruff, pytest, node --test and pip-audit](docs/proof/tests.jpg)
 
@@ -28,7 +28,7 @@ flowchart LR
   V --> D["datacontract check-pr<br/>classify every change<br/>from the consumer's view"]
   D -- "only safe changes" --> OK["CI passes"]
   D -- "any breaking change" --> NO["CI fails<br/>+ job summary"]
-  CASES[("spec/cases.json<br/>25 hand-labelled changes")] --> PY["Python classifier"]
+  CASES[("spec/cases.json<br/>26 hand-labelled changes")] --> PY["Python classifier"]
   CASES --> JS["JS classifier<br/>(for the catalog)"]
 ```
 
@@ -71,7 +71,7 @@ One implementation per language, each in its own folder: `python/` (CLI and rule
 | `python/src/data_contracts_platform/cli.py` | `datacontract validate`, `diff`, `check-pr` |
 | `python/src/data_contracts_platform/gitbase.py` | Reads the published version with git (fixed arguments, refs validated) |
 | `js/src/diff.js` | The same classifier in JavaScript |
-| `spec/build_cases.py` → `spec/cases.json` | 25 hand-labelled changes both languages must classify identically |
+| `spec/build_cases.py` → `spec/cases.json` | 26 hand-labelled changes both languages must classify identically |
 
 | Change | Verdict |
 |---|---|
@@ -101,17 +101,19 @@ datacontract check-pr --base origin/main contracts        # what CI runs on ever
 
 Exit codes: `0` valid or only safe changes, `1` breaking change, `2` invalid contract or git error.
 
+`check-pr` appends a Markdown summary to the file named by `GITHUB_STEP_SUMMARY` when that variable is set (GitHub Actions sets it; locally it is unset and nothing is written). Each git call has a 60 s timeout; a hung or missing git exits 2.
+
 ## Tests and results
 
 Latest local run (full detail in [docs/results/m1.md](docs/results/m1.md)):
 
 | Check | Result |
 |---|---|
-| Shared change cases, Python and JavaScript (13 breaking, 13 safe labels) | 25 / 25 identical in both languages |
-| Invalid contracts rejected (16 shapes) and YAML code tags refused | all rejected |
+| Shared change cases, Python and JavaScript (14 breaking, 14 safe labels) | 26 / 26 identical in both languages |
+| Invalid contracts rejected (17 shapes, plus files over 1 MB) and YAML code tags refused | all rejected |
 | `check-pr` on a real git repo: safe change / breaking change / new / removed contract | pass / fail / pass / fail, as expected |
 | Option-like or malformed git refs (`-p`, `--output=…`, `main..HEAD`) | 5 / 5 refused |
-| Tests passed | Python 58, JavaScript 26 |
+| Tests passed | Python 62, JavaScript 27 |
 
 The gate on a real repository, after renaming a column, adding an order status and slowing the SLA from 1 h to 1 day:
 
@@ -128,23 +130,25 @@ Breaking changes found: this pull request must not merge as is.
 
 ```mermaid
 mindmap
-  root((84 tests pass))
-    Validation 20
+  root((89 tests pass))
+    Validation 22
       published contract is valid
-      16 invalid shapes rejected
+      17 invalid shapes rejected
+      files over 1 MB rejected
       all problems reported at once
       YAML tags cannot run code
     Classification
-      25 shared cases in Python
-      the same 25 cases in JavaScript
-      13 breaking and 13 safe labels
+      26 shared cases in Python
+      the same 26 cases in JavaScript
+      14 breaking and 14 safe labels
       different contracts refused
-    CLI and PR gate 10
+    CLI and PR gate 11
       exit codes 0, 1 and 2
       real git repo, safe change passes
       breaking change fails with summary
       removed contract fails
       5 option-like refs refused
+      hung git reported as an error
 ```
 
 ## Roadmap
@@ -184,6 +188,7 @@ What this repo must show before it counts as done:
 - [ADR 0001: record architecture decisions](docs/adr/0001-record-architecture-decisions.md)
 - [ADR 0002: classify changes from the consumer's point of view, strictly](docs/adr/0002-classify-from-consumer-view.md)
 - [M1 results](docs/results/m1.md)
+- [Quality check against the 10 rules (2026-11-01)](docs/quality/2026-11-01.md)
 
 ## Scope
 
