@@ -6,6 +6,7 @@ from pathlib import Path
 
 import pytest
 
+from data_contracts_platform import gitbase
 from data_contracts_platform.cli import main
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -95,3 +96,13 @@ def test_check_pr_new_and_removed_contracts(repo):
 def test_check_pr_rejects_option_like_refs(repo, ref, capsys):
     assert main(["check-pr", f"--base={ref}"]) == 2  # = form, so argparse passes it through
     assert "refusing unusual git ref" in capsys.readouterr().err
+
+
+def test_check_pr_reports_a_hung_git_as_an_error(repo, monkeypatch, capsys):
+    def hang(argv, **kwargs):
+        assert kwargs["timeout"] > 0
+        raise subprocess.TimeoutExpired(argv, kwargs["timeout"])
+
+    monkeypatch.setattr(gitbase.subprocess, "run", hang)
+    assert main(["check-pr", "--base", "main"]) == 2
+    assert "git timed out" in capsys.readouterr().err

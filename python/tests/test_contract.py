@@ -44,6 +44,7 @@ def _broken(**changes):
         (_broken(kind="Table"), "kind"),
         (_broken(id=""), "id must"),
         (_broken(version="1.0"), "version"),
+        (_broken(version="1.0.0-rc1"), "version"),
         (
             _broken(team=[{"username": "a", "role": "consumer"}]),
             "exactly one member with role: owner",
@@ -134,6 +135,13 @@ def test_all_problems_are_reported_at_once():
 def test_yaml_tags_cannot_run_code():
     with pytest.raises(ContractError, match="not valid YAML"):
         loads("!!python/object/apply:os.system ['echo pwned']")
+
+
+def test_oversized_file_is_rejected_before_parsing(tmp_path):
+    big = tmp_path / "big.yaml"
+    big.write_text("#" * 1_000_001, encoding="utf-8")
+    with pytest.raises(ContractError, match="larger than 1000000 bytes"):
+        load(big)
 
 
 def test_non_mapping_is_rejected():

@@ -105,8 +105,8 @@ def _field(path: str, old: Field, new: Field) -> list[Change]:
     elif a is None and b is not None:
         out.append(Change("allowed-values-added", path, False, f"restricted to {list(b)}"))
     elif a is not None and b is not None:
-        added = [v for v in b if v not in a]
-        dropped = [v for v in a if v not in b]
+        added = [v for v in b if _key(v) not in {_key(x) for x in a}]
+        dropped = [v for v in a if _key(v) not in {_key(x) for x in b}]
         if added:
             out.append(Change("allowed-values-extended", path, True, f"new values {added}"))
         if dropped:
@@ -116,3 +116,8 @@ def _field(path: str, old: Field, new: Field) -> list[Change]:
     if old.description != new.description:
         out.append(Change("description-changed", path, False, "field description edited"))
     return out
+
+
+def _key(value: object) -> tuple[bool, object]:
+    """Comparison key that keeps True apart from 1, as JSON and the JS classifier do."""
+    return (isinstance(value, bool), value)

@@ -177,6 +177,15 @@ OLD_SIDE: list[tuple[str, Mutation, Mutation, list[list]]] = [
         lambda d: None,
         [["freshness-added", "orders", S]],
     ),
+    (
+        "allowed values 0 and 1 replaced by false and true",
+        lambda d: prop(d, "order_items", "line_no").update(allowedValues=[0, 1]),
+        lambda d: prop(d, "order_items", "line_no").update(allowedValues=[False, True]),
+        [
+            ["allowed-values-extended", "order_items.line_no", B],
+            ["allowed-values-narrowed", "order_items.line_no", S],
+        ],
+    ),
 ]
 
 

@@ -29,6 +29,10 @@ def test_is_breaking():
     case = next(c for c in CASES if c["name"] == "field removed")
     assert is_breaking(diff(parse(case["old"]), parse(case["new"])))
     assert not is_breaking([])
+    mixed = next(c for c in CASES if c["name"] == "several changes at once")
+    changes = diff(parse(mixed["old"]), parse(mixed["new"]))
+    assert any(not c.breaking for c in changes)
+    assert is_breaking(changes)
 
 
 def test_different_contracts_cannot_be_compared():
