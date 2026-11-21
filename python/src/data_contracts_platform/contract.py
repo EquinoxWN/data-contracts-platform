@@ -104,10 +104,11 @@ def parse(doc: Any, source: str = "contract") -> Contract:
 
 def _owner(team: Any, errors: list[str]) -> str:
     """The username of the single team member with role owner."""
+    members = team if isinstance(team, list) else []
     owners = [
-        m.get("username") for m in team or [] if isinstance(m, dict) and m.get("role") == "owner"
+        m.get("username") for m in members if isinstance(m, dict) and m.get("role") == "owner"
     ]
-    if not isinstance(team, list) or len(owners) != 1 or not isinstance(owners[0], str):
+    if len(owners) != 1 or not isinstance(owners[0], str):
         errors.append("team must list exactly one member with role: owner")
         return ""
     return owners[0]

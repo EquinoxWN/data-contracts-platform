@@ -147,3 +147,11 @@ def test_oversized_file_is_rejected_before_parsing(tmp_path):
 def test_non_mapping_is_rejected():
     with pytest.raises(ContractError, match="mapping"):
         loads("- just\n- a list\n")
+
+
+@pytest.mark.parametrize("team", [5, 1.5, True])
+def test_non_list_team_is_a_contract_error(team):
+    doc = copy.deepcopy(BASE)
+    doc["team"] = team
+    with pytest.raises(ContractError, match="role: owner"):
+        parse(doc)

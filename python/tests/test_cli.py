@@ -106,3 +106,7 @@ def test_check_pr_reports_a_hung_git_as_an_error(repo, monkeypatch, capsys):
     monkeypatch.setattr(gitbase.subprocess, "run", hang)
     assert main(["check-pr", "--base", "main"]) == 2
     assert "git timed out" in capsys.readouterr().err
+
+
+def test_check_pr_accepts_an_absolute_folder(repo):
+    assert main(["check-pr", "--base", "main", str(repo / "contracts")]) == 0

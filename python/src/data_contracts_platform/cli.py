@@ -57,7 +57,11 @@ def _validate(files: list[Path]) -> int:
 def _check_pr(base: str, folder: Path) -> int:
     """Compare the working tree's contracts with the ones published at base."""
     repo = Path()
-    current = {p.as_posix() for p in folder.rglob("*") if p.suffix in (".yaml", ".yml")}
+    current = {
+        p.resolve().relative_to(repo.resolve()).as_posix()
+        for p in folder.rglob("*")
+        if p.suffix in (".yaml", ".yml")
+    }
     published = set(gitbase.files_at(base, folder, repo))
     breaking = False
     lines = [f"## Data contract check against `{base}`", ""]

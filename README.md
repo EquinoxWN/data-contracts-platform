@@ -13,7 +13,7 @@ The CLI validates the published contract, then compares two edited copies with i
 
 ![datacontract validate and diff](docs/proof/demo.jpg)
 
-62 Python and 27 JavaScript tests pass over the same shared cases, and the dependencies have no known vulnerabilities (the screenshot is from the M1 run, before the 2026-11-01 quality pass added 4 Python tests and 1 shared case):
+66 Python and 27 JavaScript tests pass over the same shared cases, and the dependencies have no known vulnerabilities (the screenshot is from the M1 run, before the 2026-11-01 quality pass and the 2026-11-21 polish added 8 Python tests and 1 shared case):
 
 ![Cases check, ruff, pytest, node --test and pip-audit](docs/proof/tests.jpg)
 
@@ -113,7 +113,7 @@ Latest local run (full detail in [docs/results/m1.md](docs/results/m1.md)):
 | Invalid contracts rejected (17 shapes, plus files over 1 MB) and YAML code tags refused | all rejected |
 | `check-pr` on a real git repo: safe change / breaking change / new / removed contract | pass / fail / pass / fail, as expected |
 | Option-like or malformed git refs (`-p`, `--output=…`, `main..HEAD`) | 5 / 5 refused |
-| Tests passed | Python 62, JavaScript 27 |
+| Tests passed | Python 66, JavaScript 27 |
 
 The gate on a real repository, after renaming a column, adding an order status and slowing the SLA from 1 h to 1 day:
 
@@ -130,7 +130,7 @@ Breaking changes found: this pull request must not merge as is.
 
 ```mermaid
 mindmap
-  root((89 tests pass))
+  root((93 tests pass))
     Validation 22
       published contract is valid
       17 invalid shapes rejected
